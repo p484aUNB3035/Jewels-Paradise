@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+        }
+        .margin-top-bottom {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .contact-us-detail a {
+            color: #333;
+            text-decoration: none;
+        }
+        .pattern-bg {
+            background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        .textarea-message textarea {
+            resize: none;
+        }
+        .button-style {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+        }
+        .button-style-dark {
+            background-color: #333;
+        }
+        .button-style-color-2 {
+            background-color: #17a2b8;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'Home'%}" class="back-button">
+        <button class="button button-style button-style-dark">Back</button>
+    </a>
+
+    <!-- Success message section -->
+    {% if messages %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 mt-4">
+                    {% for message in messages %}
+                        <div class="alert alert-success" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+   
+    <div class="container">
+        <div class="row margin-top-bottom">
+            <div class="col-md-offset-3 col-sm-offset-2 col-md-6 col-sm-8 mt-4">   
+                <div class="row">
+                    <div class="contact-us-detail"><a href="mailto:info@uipasta.com"></a></div>
+                    <form method="POST" class="contact-us pattern-bg">
+                        {% csrf_token %}
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Your Name">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" id="address" name="mobile" class="form-control" placeholder="Enter Mobile No">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="textarea-message form-group">
+                                <textarea id="message" name="message" class="textarea-message form-control" placeholder="Your Message" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="text-center">      
+                            <button type="submit" class="button button-style button-style-dark button-style-color-2">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
